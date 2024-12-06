@@ -1,0 +1,25 @@
+# Menjaga agar file atau folder berikut tidak dimasukkan ke dalam Docker image
+
+# Jangan masukkan file bytecode Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Jangan masukkan file log
+*.log
+
+# Jangan masukkan folder Git
+.git
+.gitignore
+
+# Jangan masukkan file atau folder konfigurasi yang tidak perlu
+Dockerfile
+docker-compose.yml
+.env
+
+# Jangan masukkan file database atau file lain yang tidak diperlukan
+*.sqlite
+*.db
+
+# Jika ada folder node_modules, jangan disertakan dalam image
+node_modules/
