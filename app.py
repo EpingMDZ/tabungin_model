@@ -12,17 +12,20 @@ db = firestore.Client()
 model = tf.keras.models.load_model('my_model.keras')
 
 # Fungsi untuk menyimpan data ke Firestore
-# Fungsi untuk menyimpan data ke Firestore
 def save_to_firestore(income, total_expenses, dependents, prediction, savings_recommendation):
     doc_ref = db.collection('predictions').add({
-        'income': float(income),  # Convert to float
-        'total_expenses': float(total_expenses),  # Convert to float
-        'dependents': int(dependents),  # Convert to int
-        'prediction': float(prediction),  # Convert to float
-        'savings_recommendation': float(savings_recommendation),  # Convert to float
+        'income': float(income),
+        'total_expenses': float(total_expenses),
+        'dependents': int(dependents),
+        'prediction': float(prediction),
+        'savings_recommendation': float(savings_recommendation),
         'timestamp': firestore.SERVER_TIMESTAMP
     })
     print("Data berhasil disimpan ke Firestore:", doc_ref)
+
+@app.route('/')
+def home():
+    return "Cloud Run is working!"
 
 @app.route('/predict', methods=['POST'])
 def predict():
