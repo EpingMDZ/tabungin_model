@@ -1,20 +1,17 @@
-# Menggunakan image Python sebagai base
-FROM python:3.9-slim
+# Gunakan image Python terbaru
+FROM python:3.12-slim
 
-# Menentukan direktori kerja di dalam container
+# Set working directory
 WORKDIR /app
 
-# Menyalin file requirements.txt ke dalam container
-COPY requirements.txt /app/
+# Copy file requirements.txt
+COPY requirements.txt .
 
-# Menginstal dependensi yang diperlukan dari requirements.txt
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Menyalin semua file aplikasi, termasuk model my_model.keras, ke dalam container
-COPY . /app/
+# Copy semua file proyek
+COPY . .
 
-# Mengekspos port yang digunakan oleh aplikasi Flask
-EXPOSE 8080
-
-# Menjalankan aplikasi Flask
+# Menjalankan aplikasi dengan Flask
 CMD ["python", "app.py"]
